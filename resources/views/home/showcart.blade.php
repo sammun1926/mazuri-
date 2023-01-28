@@ -20,6 +20,33 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+      <style type="text/css">
+        
+        .centre{
+            margin: auto;
+            width: 70%;
+            text-align: centre;
+            padding: 30px;
+        }
+
+        table,th,td
+        {
+           border: 1px solid grey;
+        }
+
+        .th_deg{
+            font-size: 30px;
+            padding: 50px;
+            background: skyblue;
+        }
+
+        .total_deg{
+          font-size: 20px;
+          padding: 40px;
+          text-align: centre;  
+        }
+
+        </style>
    </head>
    <body>
       <div class="hero_area">
@@ -28,18 +55,63 @@
          <!-- slider section -->
         
          <!-- end slider section -->
-      </div>
+     
+      <!-- why section -->
+
+      @if(session()->has('message'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+          {{session()->get('message')}}
+             </div>
+     @endif
+
+
+      <div class="centre">
+
       <table>
-        <th>Product title</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <tr>
+            <th class="th_deg">Product title</th>
+            <th class="th_deg">Product Quantity</th>
+            <th class="th_deg">Price</th>
+            <th class="th_deg">Image</th>
+            <th class="th_deg">Action</th>
+        </tr>
+
+        <?php $totalprice=0;
+        ?>
+
+        @foreach($cart as $cart)
+
+        <tr>
+            <td>{{$cart->product_title}}</td>
+            <td>{{$cart->quantity}}</td>
+            <td>ksh{{$cart->price}}</td>
+            <td><img class="img_deg" src="/product/{{$cart->image}}"></td>
+            <td><a class="btn btn-danger" onclick="return confirm('Are you sure to remove this product?')"href="{{url('/remove_cart',$cart->id)}}">Remove Product</a></td>
+        </tr>
+        <?php $totalprice=$totalprice + $cart->price ?>
+        @endforeach
+
+      </table>
+      <div>
+        <h1 class="total_deg"> Total Price : ksh{{$totalprice}}</h1>
+      </div>
+
+      <div>
+
+      <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed To Order</h1>
+
+      <a href="{{url('cash_order')}}" class="btn btn-danger">Cash On Delivery</a>
+
+      <a href="" class="btn btn-danger">Paying Using Card</a>
+
+
+      </div>
       <!-- footer start -->
-      @include('home.footer')
+      
       <!-- footer end -->
       <div class="cpy_">
-         <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
+         <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Sam Maina</a><br>
          
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
          

@@ -22,7 +22,7 @@
                            <div class="row">
 
                            <div class="col-md-4">
-                           <input type="number" name="Quantity" value="1" min="1" style="width: 100px">
+                           <input type="number" name="quantity" value="1" min="1" style="width: 100px">
 
                            </div>
 
