@@ -43,7 +43,7 @@
         .total_deg{
           font-size: 20px;
           padding: 40px;
-          text-align: centre;  
+            
         }
 
         </style>
@@ -103,7 +103,7 @@
 
       <a href="{{url('cash_order')}}" class="btn btn-danger">Cash On Delivery</a>
 
-      <a href="" class="btn btn-danger">Paying Using Card</a>
+     
 
 
       </div>
